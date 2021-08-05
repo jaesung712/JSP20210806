@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board">
+ 	<insert id="write" parameterType="map">
+  	insert into tb_board(b_userid, b_title, b_content, b_file) values(#{b_userid}, #{b_title}, #{b_content}, #{b_file})
+  </insert>
+  <delete id="delete" parameterType="map">
+  	delete from tb_board where b_idx=#{b_idx}
+  </delete>
+ <select id="edit" parameterType="map" resultType="map">
+  	select b_title, b_content, b_file from tb_board where b_idx=#{b_idx}
+  </select>
+  <update id="edit_ok1" parameterType="map">
+  	update tb_board set b_title = #{b_title} , b_content = #{b_content}, b_file = #{b_file} where b_idx = #{b_idx}
+  </update>
+  <update id="edit_ok2" parameterType="map">
+  	update tb_board set b_title = #{b_title} , b_content = #{b_content} where b_idx = #{b_idx}
+  </update>
+  <!-- <update id="likeup" parameterType="map">
+  	update tb_board set b_like = b_like +1 where b_idx = #{b_idx}
+  </update>
+   <select id="like" parameterType="map" resultType="map">
+  	select b_like from tb_board where b_idx = #{b_idx}
+  </select>
+ -->
+<!--   <update id="hit" parameterType="map">
+  	update tb_board set b_hit = b_hit + 1 where b_idx=#{b_idx}
+  </update> 
+  <select id="view" parameterType="map" resultType="map">
+  	select b_idx, b_userid, b_title, b_content, b_regdate, b_like, b_hit, b_file from tb_board where b_idx=#{b_idx}
+  </select>
+ --> <!--  <select id="totalcnt" resultType="int">
+  	select count(b_idx) as total from tb_board
+  </select>
+  <select id="list" parameterType="string" resultType="com.koreait.board.BoardDTO">
+  	select b_idx as idx, b_userid as userid, b_title as title, b_regdate as regdate, b_like as likke, b_hit as hit, b_file as file from tb_board order by b_idx desc limit ${start}, ${pagePerCount}
+  </select> -->
+</mapper>

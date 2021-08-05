@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reply">
+
+ 	<insert id="reply_ok" parameterType="map">
+ 		insert into tb_reply (re_userid, re_content, re_boardidx) values (#{re_userid},#{re_content},#{re_boardidx})
+ 	</insert>
+ 	
+ 	<select id="view_reply" parameterType="String" resultType="com.koreait.reply.ReplyDTO">
+ 	 select re_idx as reidx, re_userid as userid, re_content as content, re_regdate as regdate from tb_reply where re_boardidx=#{idx} order by re_idx desc
+  </select>
+ 	
+ 	
+ 	<delete id="reply_del" parameterType="map">
+ 		delete from tb_reply where re_idx=#{re_idx}
+ 	</delete>
+ 	
+ 	
+ </mapper>
